@@ -1,4 +1,5 @@
 import bisect
+import decimal
 
 
 def smaller_counts(lst):
@@ -12,6 +13,6 @@ def smaller_counts(lst):
 
 	return list(reversed(result))
 
+
 if __name__ == '__main__':
-	arr = [3, 4, 9, 6, 1]
-	print(smaller_counts(arr))
+	print(decimal.Decimal('-inf'))
