@@ -1,7 +1,3 @@
-from typing import *
-from collections import *
-
-
 # Definition for a binary tree node.
 class TreeNode:
 	def __init__(self, val=0, left=None, right=None):
@@ -13,7 +9,7 @@ class TreeNode:
 class Solution:
 	def isBalanced(self, root: TreeNode) -> bool:
 
-		# approach 1: Do a top-down recursion. For each node, we calulate the
+		# approach 1: Do a top-down recursion. For each node, we calculate the
 		# height of its left and right subtrees. Check if these heights are no
 		# more than 1 time: O(n log n), n is the total nodes in the BT space:
 		# O(n) for the recursive stack
@@ -59,5 +55,5 @@ class Solution:
 
 		return get_depth(root) != -1
 
-	# time: O(n), n is total nodes in the BT
-	# space: O(n)
+# time: O(n), n is total nodes in the BT
+# space: O(n)
