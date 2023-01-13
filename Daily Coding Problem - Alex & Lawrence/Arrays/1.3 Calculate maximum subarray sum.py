@@ -4,4 +4,4 @@ def solution_brute_force(arr) -> int:
 
 
 if __name__ == '__main__':
-
+	pass
