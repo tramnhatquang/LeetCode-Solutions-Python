@@ -1,4 +1,3 @@
-from typing import *
 from collections import *
 
 
@@ -51,3 +50,5 @@ class Solution:
 				if node:
 					q.append((node, curr_depth + 1))
 		return res
+
+# time: O(n) = space
