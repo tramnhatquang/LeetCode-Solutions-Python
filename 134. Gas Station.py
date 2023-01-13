@@ -4,7 +4,8 @@ from typing import *
 class Solution:
 	def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
 		# approach 1: brute force solution
-		# 1. Treat each station as a starting point and then travel the cicurlar route to see if you can reach the starting point. During the trip, if the gas balance is negative, that means the gas amount < travel distance between two any gas stations, we are unable to finish the circular route from that starting index.
+		# 1. Treat each station as a starting point and then travel the circular route to see if you can reach the
+		# starting point. During the trip, if the gas balance is negative, that means the gas amount < travel distance between two any gas stations, we are unable to finish the circular route from that starting index.
 
 		# time: O(n^2), n is the length of gas, space: O(1)
 		#         for i in range(len(gas)):

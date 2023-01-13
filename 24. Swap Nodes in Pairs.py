@@ -6,7 +6,28 @@ class ListNode:
 
 
 class Solution:
-	def swapPairs(self, head: ListNode) -> ListNode:
+	def swapPair_recursive(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+		# use recursion to solve this problem
+		# check if the head is null and there is only one node in the LL
+		# it serves as our base case
+		if not head or not head.next:
+			return head
+
+		# nodes to be swapped
+		first_node = head
+		second_node = head.next
+
+		# swapping
+		first_node.next = self.swapPairs(second_node.next)
+		second_node.next = first_node
+
+		# this is the new head node
+		return second_node
+
+	# time: = space = O(n), n is the total nodes in the LL
+
+	def swapPairs_iterative(self, head: ListNode) -> ListNode:
 		# APPROACH 1: Sentinel Head + swap in paris
 		# We will use the sentinel node to keep track pf the reference to the head node
 

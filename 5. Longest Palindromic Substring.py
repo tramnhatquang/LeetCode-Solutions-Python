@@ -1,7 +1,7 @@
 class Solution:
 	def longestPalindrome(self, s: str) -> str:
 		if not s:  # make sure we do not have empty string
-			return 0
+			return ''
 		n = len(s)
 		longest_palindromic_count = 0  # since a character is a palindromic
 		longest_palindromic = ''
