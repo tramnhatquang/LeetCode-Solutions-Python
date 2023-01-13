@@ -1,6 +1,3 @@
-from collections import deque
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -11,50 +8,58 @@ from typing import Optional
 
 
 class Solution:
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        # Recursive approach:
-        # Time: O(n)
-        # Space: O(n) because the recursive calls are bound by the height of the tree. In the worst case, the tree is linear and the height is in O(n)O(n)
-        return not root or self.helper_symmetric(root.left, root.right)
 
-    def helper_symmetric(self, left, right):
-        if not left and not right:
-            return True
-        if not left or not right:
-            return False
-        return left.val == right.val and self.helper_symmetric(left.left, right.right) and self.helper_symmetric(left.right, right.left)
+	def isSymmetric_bfs_iterative(self, root: Optional[TreeNode]) -> bool:
+		# do the bfs + iteration
 
-        # iterative approach: Using a queue
-        # Time: O(n)
-        # Space: O(n)
-        if not root:
-            return True
-        q = []
-        q.append(root.left);
-        q.append(root.right);
-        while q:
-            left = q.pop(0)
-            right = q.pop(0)
-            if not left and not right:
-                continue;
-            if not left or not right:
-                return False;
-            if left.val != right.val:
-                return False
-            q.append(left.left);
-            q.append(right.right);
-            q.append(left.right);
-            q.append(right.left);
-        return True;
+		# bfs will be faster than dfs in this case, since we can return False immediately before traversing deeply the BT
 
+		if not root:
+			return True
 
+		stack = [(root.left, root.right)]
 
+		while stack:
+			node1, node2 = stack.pop()
+			if not node1 and not node2:
+				continue
+			if not node1 or not node2:  # they are not symmetric
+				return False
+			if node1.val != node2.val:
+				return False
+			else:
+				# append left and right subtrees of two nodes into the stack
+				stack.append((node1.left, node2.right))
+				stack.append((node1.right, node2.left))
 
+		# if the loop does not return False, that means we have a symmetric tree
+		return True
 
+	# time: O(n) = spaace, n is the total of nodes in the BT
 
+	def isSymmetric_dfs_recursive(self, root: Optional[TreeNode]) -> bool:
 
+		# recursive approach
+		# think about parsing the left subtree and right subtree in the helper/dfs function
+		# think about your base cases
+		# how to make recursive calls so that eventually the function comes to the base cases
 
+		def dfs(node1, node2) -> bool:
+			# establish base cases
+			if not node1 and not node2:
+				return True
+			if not node1 or not node2:
+				return False
 
+			# recursively call dfs on the left and right subtrees until we reach the base cases
+			return node1.val == node2.val and dfs(node1.left,
+												  node2.right) and dfs(
+				node1.right, node2.left)
 
+		# sanity check the root node
+		if not root:
+			return True  # an empty tree is a symmetric one
 
+		return dfs(root.left, root.right)
 
+# time: O(n) = space, n is total nodes in the binary tree

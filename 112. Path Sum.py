@@ -10,24 +10,24 @@ class TreeNode:
 
 
 class Solution:
-	def hasPathSum_dfs(self, root: Optional[TreeNode], targetSum: int) -> bool:
+	def hasPathSum_dfs_recursive(self, root: Optional[TreeNode], targetSum:
+	int) -> \
+			bool:
+		if not root:  # an empty tree returns False since there is no root-to-leaf paths
+			return False
 
-		def helper(root, curr) -> bool:
-			if not root:
-				return False
+		# otherwise, subtract the root.val from the targetSum
+		targetSum -= root.val
+		# check if we reach a leaf node
+		if not root.left and not root.right:
+			return targetSum == 0
 
-			# check if we are at a leaf node
-			if root.left is None and root.right is None:
-				return curr + root.val == targetSum
+		# recursively traverse thr left and right subtree of the curr node
+		return self.hasPathSum(root.left, targetSum) or self.hasPathSum(
+			root.right, targetSum)
 
-			# otherwise, we add the curr node's val into the curr sum at that node
-			curr += root.val
-			left = helper(root.left, curr)
-			right = helper(root.right, curr)
-			return left or right
 
-		return helper(root, 0)
-	# time: O(n), space: O(n), n is the total nodes in the BT
+# time: O(n), space: O(n), n is the total nodes in the BT
 
 
 def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:

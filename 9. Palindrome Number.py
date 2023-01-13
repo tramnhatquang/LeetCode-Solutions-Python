@@ -31,8 +31,13 @@ class Solution:
 			x //= 10
 
 		return x == reversedX or x == reversedX // 10
+
+
 # time: O(n), space: O(1)
 
 # we reverse half of the given number to avoid overflow
 # 1. If the number of digits is odd, check x == reversedX // 10
 # 2. If the number of digits is even, check x == reversedX
+
+if __name__ == '__main__':
+	pass
