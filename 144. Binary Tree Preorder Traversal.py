@@ -5,17 +5,35 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def preorderTraversal_recursive(self, root: Optional[TreeNode]) -> List[int]:
+        # code here
+        # visit root -> left subtree -> right subtree
+        res = []
+
+        def helper(root):
+            if root:
+                res.append(root.data)
+                helper(root.left)
+                helper(root.right)
+
+        helper(root)
+        return res
+
+    def preorderTraversal_iterative(self, root: Optional[TreeNode]) -> List[int]:
         # return [] if not root else [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
+        if not root:
+            return []  # an empty list if the root node is Null
 
-        stack, output = [root], []
+        res, stack = [], [root]
         while stack:
-            node = stack.pop()
-            if node:
-                output.append(node.val)
-                if node.right:
-                    stack.append(node.right)
-                if node.left:
-                    stack.append(node.left)
-        return output
+            root = stack.pop()
+            res.append(root.val)
 
+            # append node into the stack (root.right first then root.left)
+            # since we need to process the left nodes before the right nodes
+            if root.right:
+                stack.append(root.right)
+            if root.left:
+                stack.append(root.left)
+
+        return res
