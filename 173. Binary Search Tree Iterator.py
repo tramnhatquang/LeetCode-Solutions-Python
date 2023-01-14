@@ -19,6 +19,8 @@ class BSTIterator:
 		# call the flatten the input BST
 		self._inorder(root)
 
+	# time = space =O(n)
+
 	def _inorder(self, root):
 		if root:
 			self._inorder(root.left)
@@ -30,8 +32,11 @@ class BSTIterator:
 		self.index += 1
 		return self.sorted_arr[temp]
 
+	# time: O(1) ,space = O(n)
+
 	def hasNext(self) -> bool:
 		return self.index < len(self.sorted_arr)
+# time = O(1), space: O(n)
 
 # Your BSTIterator object will be instantiated and called as such:
 # obj = BSTIterator(root)
