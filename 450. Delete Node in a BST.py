@@ -7,7 +7,7 @@ class TreeNode:
 
 
 class Solution:
-	def deleteNode(self, root: TreeNode, key: int) ->TreeNode:
+	def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
 		if not root:
 			return None
 
@@ -34,3 +34,5 @@ class Solution:
 			root.val = successor.val
 			root.right = self.deleteNode(root.right, successor.val)
 		return root
+
+# time = O(n), space =O(h)
