@@ -3,30 +3,34 @@ from typing import *
 
 
 class Solution:
-	def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+	def groupAnagrams_count_chars(self, strs: List[str]) -> List[List[str]]:
+		res = collections.defaultdict(list)  # each key has its value as a list
+
+		for string in strs:
+			# create a list of char's frequency in each string:
+			count = [0] * 26  # since we only deal with lowercase letters
+			for char in string:
+				count[ord(char) - ord('a')] += 1
+
+			# store the count list as a key in a map
+			# we know two sorted strings are anagrams to each other
+			# Python trick: key in map only allows immutable value
+			res[tuple(count)].append(string)
+
+		return list(res.values())
+
+	# time: O(n log (m)) where n : length of strings, m is the longest length of string
+	# space: O(n * m), total information content stored in res
+
+	def groupAnagrams_sort(self, strs: List[str]) -> List[List[str]]:
 		# approach 1: Categorize by Sorted String
 		#   -Two strings are anagrams if and only if their sorted strings are equal.
 		#   - use a map that has keys as sorted strings and vals as lists of strings that are the same after sorting and are equal to keys
 		# Time: O(N KlogK) where N is the length of strs and K is the maximum length of a string in strs
 		# Space: O(NK) the total information content stored in hash_table
+		map = collections.defaultdict(list)
 
-		# hash_table = defaultdict(list)
-		#
-		# for string in strs:
-		#     hash_table[tuple(sorted(string))].append(string)
-		#
-		# return hash_table.values()
-
-		# approach 2: Categorize by Count
-		# Counting the occurences of each character in a string and use them as a key in a dictionary
-		# Time Complexity: O(N*K) where N is the length of the strs
-		# K is the maximum length of a string in strs
-		# Space: O(N*K), total information content stored in ans
-		ans = collections.defaultdict(list)
 		for string in strs:
-			count = [0] * 26
-			for char in string:
-				count[ord(char) - ord('a')] += 1
-			ans[tuple(count)].append(string)
+			map[tuple(sorted(string))].append(string)
 
-		return list(ans.values())
+		return list(map.values())
