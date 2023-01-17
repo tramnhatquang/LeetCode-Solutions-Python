@@ -19,3 +19,6 @@ if __name__ == '__main__':
 	assert check_sign([-2, -5, -3, -1, -7]) == -1
 	assert check_sign([1, 0, 7, 5, 1]) == 0
 	assert check_sign([0]) == 0
+	assert check_sign([1, -2, -3, 5]) == 1
+	assert check_sign([1, 2, 3, -5]) == -1
+
