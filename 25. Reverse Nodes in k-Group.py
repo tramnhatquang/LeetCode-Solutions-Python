@@ -55,5 +55,5 @@ if __name__ == '__main__':
 	head.next.next.next.next = ListNode(40)
 
 	s = Solution()
-	head = s.reverseKGroup(head, 2)
+	head = s.reverseKGroup(head, 3)
 	print(s.printLL(head))

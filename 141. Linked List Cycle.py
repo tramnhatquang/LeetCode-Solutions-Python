@@ -22,6 +22,8 @@ class Solution:
 
 		return False
 
+	# time: O(n), space: O(1)
+
 	def hasCycle_set(self, head: ListNode) -> bool:
 		# approach 1: Use a hash set to store the visited nodes. When we traverse to a node which had been visited before, we return True. Otherwise, after reaching the end of the LL, we do not find any duplicate node then we returns False
 		visited = set()
@@ -33,6 +35,4 @@ class Solution:
 			curr = curr.next
 		return False
 
-	# time: O(n) = space, n is the number of nodes in the LL
-
-# time: O(n), space: O(1)
+# time: O(n) = space, n is the number of nodes in the LL
