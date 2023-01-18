@@ -1,42 +1,59 @@
 from typing import *
+
+
 # Definition for singly-linked list.
 class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+	def __init__(self, val=0, next=None):
+		self.val = val
+		self.next = next
+
+
 class Solution:
 	def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+		dummy = ListNode(0, head)
+		groupPrev = dummy
 
-		# create a sentinel head, helps us to keep track of the head of the LL when we reverse
-		sentinel = group_previous = ListNode(0, head)
-
-		#  start reversing
 		while True:
-			kth_node = self.get_kth(group_previous, k)
-			# when the k-th node is None, we have less than k nodes left to reverse
-			if not kth_node:
+			kth = self.getKth(groupPrev, k)
+			if not kth:
 				break
+			groupNext = kth.next
 
-			group_next = kth_node.next
 			# reverse group
-			prev, curr = kth_node.next, group_previous.next
-			while curr != group_next:
-				nxt = curr.next
+			prev, curr = kth.next, groupPrev.next
+			while curr != groupNext:
+				tmp = curr.next
 				curr.next = prev
 				prev = curr
-				curr = nxt
+				curr = tmp
 
-			# link the previous reversed group to the next group
-			temp = group_previous.next
-			group_previous.next = kth_node
-			group_previous = temp
+			tmp = groupPrev.next
+			groupPrev.next = kth
+			groupPrev = tmp
+		return dummy.next
 
-		return sentinel.next
-
-	def get_kth(self, curr: ListNode, k: int) -> ListNode:
+	def getKth(self, curr, k):
 		while curr and k > 0:
 			curr = curr.next
 			k -= 1
 		return curr
 
-# TIme: O(n), space: O(1)
+	def printLL(self, head: ListNode) -> List[int]:
+		res = []
+		while head:
+			res.append(head.val)
+			head = head.next
+
+		return res
+
+
+if __name__ == '__main__':
+	head = ListNode(5)
+	head.next = ListNode(10)
+	head.next.next = ListNode(20)
+	head.next.next.next = ListNode(30)
+	head.next.next.next.next = ListNode(40)
+
+	s = Solution()
+	head = s.reverseKGroup(head, 2)
+	print(s.printLL(head))
