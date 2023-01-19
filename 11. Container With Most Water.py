@@ -2,20 +2,8 @@ from typing import List
 
 
 class Solution:
-	def maxArea(self, height: List[int]) -> int:
-		# approach 1: brute-force solution
-		# compute the contained water between every pair of lines in the input
-		# if not height:
-		#     return 0
-		# max_volume = 0
-		# for col1 in range(len(height)):
-		#     for col2 in range(col1, len(height)):
-		#         width = col2 - col1
-		#         max_volume = max(max_volume, min(height[col2], height[col1]) * width)
-		# return max_volume
 
-		# time: O(N^2), N IS THE LENGTH OF INPUT
-		# SPACe: O(1)
+	def maxArea_optimal(self, height: List[int]) -> int:
 
 		# approach 2: two pointers
 		# the water contained between two vertical lines is determined by the height * width
@@ -34,7 +22,7 @@ class Solution:
 		while left < right:
 			curr_width = right - left
 			max_volume = max(max_volume,
-			                 min(height[left], height[right]) * curr_width)
+							 min(height[left], height[right]) * curr_width)
 			if height[left] < height[right]:
 				left += 1
 			else:
@@ -42,5 +30,22 @@ class Solution:
 
 		return max_volume
 
-# TIME: o(n), n is the length of input
-# spacE: O(1)
+	# TIME: O(N), N is the length of input
+	# spacE: O(1)
+
+	def maxArea_brute_force(self, height: List[int]) -> int:
+		# approach 1: brute-force solution
+		# compute the contained water between every pair of lines in the input
+		if not height:
+			return 0
+		n = len(height)
+		max_water = 0
+		for i in range(n):
+			for j in range(i + 1, n):
+				width = j - i
+				min_height = min(height[i], height[j])
+				max_water = max(max_water, width * min_height)
+
+		return max_water
+# time: O(N^2), N IS THE LENGTH OF INPUT
+# SPACe: O(1)

@@ -61,6 +61,4 @@ def solution(nums, k) -> bool:
 
 
 if __name__ == '__main__':
-	assert solution([1, 2, 3, 1], 3) is True
-	assert solution([1, 0, 1, 1], 1) is True
-	assert solution([1, 2, 3, 1, 2, 3], 2) is False
+	assert ((1, 1.2) > (1, 1.3)) is False
