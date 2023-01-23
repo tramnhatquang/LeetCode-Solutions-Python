@@ -11,3 +11,14 @@
 # 	# undo the modification of the current state
 #
 # 	return ans
+
+if __name__ == '__main__':
+	a = 'hello world'
+	b = a[:]
+	print('a: ', a)
+	print('b: ', b)
+
+	a = 'quang'
+
+	print('a: ', a)
+	print('b: ', b)
