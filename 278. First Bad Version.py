@@ -3,17 +3,19 @@
 
 class Solution:
 	def firstBadVersion(self, n: int) -> int:
-		# do a binary search on the range [1, n] inclusively
 		left, right = 1, n
-		while left < right:
-			mid = left + (right - left) // 2
-			# call API on the mid number
-			if isBadVersion(mid) is True:
-				right = mid
-			else:
+		ans = -1
+		while left <= right:
+			mid = (left + right) // 2
+			if isBadVersion(mid):  # mid couble possibly be the first bad version
+				# look to the left space
+				ans = mid
+				right = mid - 1
+
+			else:  # look to the right space
 				left = mid + 1
 
-		return left
+		return ans
 
 # time: O(log n)
 # space: O(1)
