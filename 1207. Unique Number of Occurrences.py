@@ -1,13 +1,20 @@
-from collections import Counter
-
-
 class Solution:
     def uniqueOccurrences(self, arr: List[int]) -> bool:
-        value_lst = []
-        for key, value in Counter(arr).items():
-            value_lst.append(value)
+        map = defaultdict(int)
+        for num in arr:
+            map[num] += 1
 
-        if len(set(value_lst)) == len(value_lst):
-            return True
-        else:
-            return False
+        # count the number of distinct values
+        count = 0
+        for i in range(len(set(map.values()))):
+            count += 1
+        return len(map) == count
+    
+    # time: O(n) = space, n is number of elements
+    
+
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        counter = Counter(arr)
+        return len(counter) == len(set(counter.values()))
+
+    # time: O(n) = space, n is number of elements
