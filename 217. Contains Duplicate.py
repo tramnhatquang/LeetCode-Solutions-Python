@@ -28,3 +28,5 @@ class Solution:
 	# 		return True
 	#
 	# return False
+
+print('Hello world')
