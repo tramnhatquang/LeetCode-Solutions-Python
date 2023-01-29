@@ -35,7 +35,7 @@ class Solution:
 		# if the loop does not return False, that means we have a symmetric tree
 		return True
 
-	# time: O(n) = spaace, n is the total of nodes in the BT
+	# time: O(n) = space, n is the total of nodes in the BT
 
 	def isSymmetric_dfs_recursive(self, root: Optional[TreeNode]) -> bool:
 
@@ -54,7 +54,7 @@ class Solution:
 			# recursively call dfs on the left and right subtrees until we reach the base cases
 			return node1.val == node2.val and dfs(node1.left,
 												  node2.right) and dfs(
-				node1.right, node2.left)
+					node1.right, node2.left)
 
 		# sanity check the root node
 		if not root:
