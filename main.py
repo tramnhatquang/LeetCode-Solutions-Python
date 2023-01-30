@@ -1,11 +1,19 @@
-def solution(arr):
-	ans = 0
-	for num in arr:
-		ans ^= num
+from typing import *
 
-	return ans
+
+def find_sum_pairs(arr: List[int], target: int) -> List[List[int]]:
+	# assume the given list contains all unique numbers
+	# Numbers can be positive or negative
+	num_set = set()
+	res = []
+	for num in arr:
+		if target - num in num_set:
+			res.append([target - num, num])
+		else:
+			num_set.add(num)
+	print(f'Res is {res}')
+	return res
 
 
 if __name__ == '__main__':
-	assert solution([2, 2, 1]) == 1
-	assert solution([4, 1, 2, 1, 2]) == 4
+	find_sum_pairs([1, 3, 2, 5, 46, 6, 7, 4], 5)

@@ -14,7 +14,7 @@ class Solution:
 	def pathSum_dfs_recursive(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
 		res = []
 
-		def dfs(node: ListNode, remaining_sum: int, path: List[int]) -> None:
+		def dfs(node: TreeNode, remaining_sum: int, path: List[int]) -> None:
 			if not node:  # base case
 				return
 
