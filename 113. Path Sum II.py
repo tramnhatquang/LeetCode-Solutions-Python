@@ -10,6 +10,29 @@ class TreeNode:
 
 
 class Solution:
+
+	def pathSum_dfs_recursive(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+		res = []
+
+		def dfs(node: ListNode, remaining_sum: int, path: List[int]) -> None:
+			if not node:  # base case
+				return
+
+			path.append(root.val)
+			# check if we reach a leaf node and remaining_sum = current node's val
+			if not node.left and not node.right and remaining_sum == node.val:
+				res.append(path.copy())
+				return
+
+			dfs(node.left, remaining_sum - node.val, path)
+			dfs(node.right, remaining_sum - node.val, path)
+			path.pop()  # backtracking
+
+		dfs(root, targetSum, [])
+		return res
+
+	# time: O(n^2), O(n) for traverse to each leaf nodes, O(n) for copying to the path list
+	# space: O(N)
 	def preorder(self, root, target, buf, results):
 		if root is None:
 			return

@@ -10,38 +10,39 @@ class TreeNode:
 
 
 class Solution:
-	def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+	def zigzagLevelOrder_bfs_iterative(self, root: Optional[TreeNode]) -> List[List[int]]:
 
 		# Approach 1: BFS
 		# 1. Do a normal BFS through each level of the BT
 		# 2. for even level, we keep the same list of nodes. However, for the odd level, we reverse the list of nodes. At the end of each level, we append the level into the result list
-		#         even_level = True
-		#         if not root:
-		#             return []
-		#         result = []
-		#         queue = deque([root])
-		#         while queue:
-		#             level_size = len(queue)
-		#             node_list = []
-		#             for _ in range(level_size):
-		#                 node = queue.popleft()
-		#                 node_list.append(node.val)
-		#                 if node.left:
-		#                     queue.append(node.left)
-		#                 if node.right:
-		#                     queue.append(node.right)
-		#             if even_level:
-		#                 result.append(node_list)
-		#             else:
-		#                 result.append(node_list[::-1])
+		even_level = True
+		if not root:
+			return []
+		result = []
+		queue = deque([root])
+		while queue:
+			level_size = len(queue)
+			node_list = []
+			for _ in range(level_size):
+				node = queue.popleft()
+				node_list.append(node.val)
+				if node.left:
+					queue.append(node.left)
+				if node.right:
+					queue.append(node.right)
+			if even_level:
+				result.append(node_list)
+			else:
+				result.append(node_list[::-1])
 
-		#             # change the level (odd - > even, even -> odd)
-		#             even_level = not even_level
+			# change the level (odd - > even, even -> odd)
+			even_level = not even_level
 
-		#         return result
+		return result
 
-		# time: O(n), N is the number of nodes in BT
-		# space: O(N). The worst case scenario is a skweed tree
+	# time: O(n), N is the number of nodes in BT
+	# space: O(N). The worst case scenario is a skweed tree
+	def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
 
 		## APPROACH 2: DFS
 		levels = []

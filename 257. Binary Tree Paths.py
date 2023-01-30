@@ -24,30 +24,31 @@ class Solution:
 
 		return ans
 
+	def binaryTreePaths_dfs_recursive(self, root: Optional[TreeNode]) -> List[str]:
+		res = []
 
-def binaryTreePaths_dfs_recursive(self, root: Optional[TreeNode]) -> List[str]:
-	res = []
+		def dfs(node: ListNode, path: List[str]) -> None:
+			# base case
+			if not node:
+				return
 
-	def dfs(root: ListNode, curr_path: List[int]) -> None:
+			path.append(str(node.val))
 
-		if not root:
-			return
+			# check if we reach a leaf node
+			if not node.left and not node.right:
+				res.append('->'.join(path))
+				path.pop()
+				return
 
-		curr_path.append(str(root.val))
+			dfs(node.left, path)
+			dfs(node.right, path)
+			path.pop()
 
-		# check if we reach a leaf node
-		if not root.left and not root.right:
-			res.append('->'.join(curr_path))
-			return
+		dfs(root, [])
+		return res
 
-		# append the curr node into the curr_path
-		if root.left:
-			dfs(root.left, curr_path)
-			curr_path.pop()  # backtracking
-		if root.right:
-			dfs(root.right, curr_path)
-			curr_path.pop()  # backtracking
 
-	dfs(root, [])
-	return res
 # time: O(n) = space
+
+if __name__ == '__main__':
+	s = Solution()
