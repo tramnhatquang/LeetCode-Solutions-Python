@@ -16,4 +16,8 @@ def find_sum_pairs(arr: List[int], target: int) -> List[List[int]]:
 
 
 if __name__ == '__main__':
-	find_sum_pairs([1, 3, 2, 5, 46, 6, 7, 4], 5)
+	# find_sum_pairs([1, 3, 2, 5, 46, 6, 7, 4], 5)
+	print(len(""))
+	print(len(" "))
+	res = [""]
+	print('Res: ', ''.join(res))

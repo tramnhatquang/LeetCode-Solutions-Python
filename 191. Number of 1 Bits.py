@@ -31,12 +31,7 @@ class Solution:
 		2. Traverse thr the binary string and count numbers of 1s
 		3. Return count
 		"""
-		binary_string = bin(n)
-		count = 0
-		for digit in binary_string:
-			if digit == '1':
-				count += 1
-		return count
+		return bin(n)[2:].count('1')
 
 
 # time: O(1), space: O(1)

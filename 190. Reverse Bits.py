@@ -8,3 +8,6 @@ class Solution:
 			n = n >> 1
 			power -= 1
 		return ret
+
+# time: O(1), since we only deal with 32 unsigned integer
+# space: O(1)
