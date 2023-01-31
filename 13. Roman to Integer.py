@@ -1,5 +1,30 @@
 class Solution:
 
+	def roman_to_integer_left_to_right_ver1(self, s: str) -> int:
+
+		map = {
+				'I': 1,
+				'V': 5,
+				'X': 10,
+				'L': 50,
+				'C': 100,
+				'D': 500,
+				'M': 1000
+		}
+
+		res = 0
+		i = 0
+		# traverse left to right
+		while i < len(s):
+			# have at least 2 characters and smaller value appears before larger one
+			if i + 1 < len(s) and map[s[i]] < map[s[i + 1]]:
+				res += map[s[i + 1]] - map[s[i]]
+				i += 2
+			else:
+				res += map[s[i]]
+		return res
+
+	# time = space = O(1)
 	def romanToInt_right_to_left(self, s: str) -> int:  # APPROACH 1: RIGHT TO LEFT PASS
 		# if we pay attention to the Roman representation
 		# for two different numerical symbols, if the second symbol's value is less than the first symbol's,
