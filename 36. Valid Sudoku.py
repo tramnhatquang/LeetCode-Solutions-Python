@@ -3,31 +3,33 @@ from typing import *
 
 
 class Solution:
-	def isValidSudoku(self, board: List[List[str]]) -> bool:
-		# approach 1: Set of rows, columns, and sub-boxes
-		#   - Check if any rows or columns contain duplicate numbers
-		#   - Check if any sub-boxes contain duplicate numbers
-		#       - each sub-box has row index of (i // 3) and column index of (j // 3) for a specific cell at (i, j)-th index.
-		#   - Use three dictionaries to check these above conditions, where keys denote the row/col index, values are set of all the numbers in a row/col/sub-box
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        # approach 1: Set of rows, columns, and sub-boxes
+        #   - Check if any rows or columns contain duplicate numbers
+        #   - Check if any sub-boxes contain duplicate numbers
+        #       - each sub-box has row index of (i // 3) and column index of (j // 3) for a specific cell at (i, j)-th index.
+        #   - Use three dictionaries to check these above conditions, where keys denote the row/col index, values are set of all the numbers in a row/col/sub-box
 
-		rows, cols, squares = defaultdict(set), defaultdict(set), defaultdict(
-			set)
+        rows, cols, squares = collections.defaultdict(
+            set), collections.defaultdict(set), collections.defaultdict(set)
 
-		# traverse through each cell in the sudoku board
-		for r in range(len(board)):
-			for c in range(len(board[0])):
-				if board[r][c] == '.':
-					continue
-				# check duplicates in rows, cols and sub-box
-				if board[r][c] in rows[r] or board[r][c] in cols[c] or board[r][
-					c] in squares[(r // 3, c // 3)]:
-					return False
+        for row in range(9):
+                for col in range(9):
+                    # check duplicate in row, col, and 3x3 boxes
+                    if board[row][col] == '.':
+                        continue
+                    if board[row][col] in rows[row]:
+                        return False
+                    if board[row][col] in cols[col]:
+                        return False
+                    if board[row][col] in squares[(row // 3, col // 3)]:
+                        return False
 
-				# add the number to specific row, col, squares
-				rows[r].add(board[r][c])
-				cols[c].add(board[r][c])
-				squares[(r // 3, c // 3)].add(board[r][c])
+                    # add the curr cell into the row, col, and the squares
+                    rows[row].add(board[row][col])
+                    cols[col].add(board[row][col])
+                    squares[(row//3, col//3)].add(board[row][col])
 
-		return True
-
-# time: O(1) = space since we only have 81 cells (9x9)
+        return True
+            # time:O(81) = O(1)
+            # space: O(81) = O(1)
