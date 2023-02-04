@@ -1,18 +1,8 @@
 from typing import *
 
 
-def find_sum_pairs(arr: List[int], target: int) -> List[List[int]]:
-	# assume the given list contains all unique numbers
-	# Numbers can be positive or negative
-	num_set = set()
-	res = []
-	for num in arr:
-		if target - num in num_set:
-			res.append([target - num, num])
-		else:
-			num_set.add(num)
-	print(f'Res is {res}')
-	return res
+def merge_sort(arr) -> List[int]:
+
 
 
 if __name__ == '__main__':
