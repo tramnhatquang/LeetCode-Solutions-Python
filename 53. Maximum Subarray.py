@@ -16,7 +16,7 @@ class Solution:
 	def maxSubArray_optimal_brute_force(self, nums: List[int]) -> int:
 		# more optimal brute force solution
 		# The trick is to recognize that all of the subarrays starting at a particular value will share a common prefix.
-		global_max = -math.inf
+		global_max = float('-inf')
 		n = len(nums)
 		for i in range(n):
 			curr_sum = 0
