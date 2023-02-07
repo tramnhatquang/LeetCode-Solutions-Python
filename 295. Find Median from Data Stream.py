@@ -1,23 +1,28 @@
-from heapq import *
-
-
 class MedianFinder:
-	def __init__(self):
-		self.small = []  # the smaller half of the list, max heap (invert min-heap)
-		self.large = []  # the larger half of the list, min heap
+	"""The brute force solution is to add each number for each iteration. Then, sort the whole array and return the median.
+		It takes addNum() method O(n log n) time and O(n) space.
+		It takes findMedian() method O(1) = space
+		This approach is not optimal, so we have to find a different way
 
-	def addNum(self, num):
-		if len(self.small) == len(self.large):
-			heappush(self.large, -heappushpop(self.small, -num))
-		else:
-			heappush(self.small, -heappushpop(self.large, num))
+	"""
+    def __init__(self):
+        self.arr = []
 
-	def findMedian(self):
-		if len(self.small) == len(self.large):
-			return float(self.large[0] - self.small[0]) / 2.0
-		else:
-			return float(self.large[0])
+    def addNum(self, num: int) -> None:
+        self.arr.append(num)
+        self.arr.sort()
 
-# 18 / 18 test cases passed.
-# Status: Accepted
-# Runtime: 388 ms
+
+    def findMedian(self) -> float:
+        n = len(self.arr)
+        # if n is odd
+        if n % 2 == 1: # return the middle number
+            return self.arr[n // 2]
+        else: # return the mean of two middle numbers
+            total = self.arr[n // 2] + self.arr[n // 2 - 1]
+            return total / 2
+
+# Your MedianFinder object will be instantiated and called as such:
+# obj = MedianFinder()
+# obj.addNum(num)
+# param_2 = obj.findMedian()

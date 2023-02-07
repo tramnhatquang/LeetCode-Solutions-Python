@@ -1,36 +1,41 @@
-from  typing import List
+from typing import List
+
+
 class Solution:
-	def fizzBuzz(self, n: int) -> List[str]:
-		# Time: O(n)
-		# Space: O(1) if we ignore the space taken by the output
-		res = []
+    def fizzBuzz_approach_2(self, n: int) -> List[int]:
+        # Using an ordered hash tbale to make the code neat
+        res = []
 
-		for i in range(1, n + 1):
-			if i % 3 == 0 and i % 5 == 0:
-				res.append('FizzBuzz')
-			elif i % 3 == 0:
-				res.append('Fizz')
-			elif i % 5 == 0:
-				res.append('Buzz')
-			else:
-				res.append(str(i))
+        hash_map = {3: 'Fizz', 5: 'Buzz'}
 
-		return res
+        for i in range(1, n + 1):
+            num_t_str = ''
 
-		# Using an ordered hash tbale to make the code neat
-		res = []
+            for key in hash_map:
+                if i % key == 0:
+                    num_t_str += hash_map[key]
 
-		hash_map = {3: 'Fizz', 5: 'Buzz'}
+            if not num_t_str:
+                num_t_str = str(i)
+            res.append(num_t_str)
 
-		for i in range(1, n + 1):
-			num_t_str = ''
+        return res
 
-			for key in hash_map:
-				if i % key == 0:
-					num_t_str += hash_map[key]
+    def fizzBuzz_approach_1(self, n: int) -> List[str]:
+        # Time: O(n)
+        # Space: O(1) if we ignore the space taken by the output
+        res = []
 
-			if not num_t_str:
-				num_t_str = str(i)
-			res.append(num_t_str)
+        for i in range(1, n + 1):
+            if i % 3 == 0 and i % 5 == 0:
+                res.append('FizzBuzz')
+            elif i % 3 == 0:
+                res.append('Fizz')
+            elif i % 5 == 0:
+                res.append('Buzz')
+            else:
+                res.append(str(i))
 
-		return res
+        return res
+
+        
