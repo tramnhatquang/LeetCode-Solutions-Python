@@ -18,5 +18,4 @@ def minMeetingRooms(intervals: List[List[int]]) -> int:
 
 
 if __name__ == '__main__':
-    intervals = [[0, 30], [5, 10], [15, 20]]
-    minMeetingRooms(intervals)
+    print("Hello World!")
