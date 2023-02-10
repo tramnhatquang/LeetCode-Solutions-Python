@@ -7,11 +7,12 @@ class Solution {
         }
 
         // count the last word
-        while ( n >= 0  && s.charAt(n) != ' ') {
+        while (n >= 0 && s.charAt(n) != ' ') {
             length++;
             n--;
         }
 
         return length;
     }
+    // time: O(n), space: O(1)
 }
