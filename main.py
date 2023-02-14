@@ -18,4 +18,6 @@ def minMeetingRooms(intervals: List[List[int]]) -> int:
 
 
 if __name__ == '__main__':
-    print("Hello World!")
+    print(True ^ True)
+    print(True ^ False)
+    print(False ^ False)

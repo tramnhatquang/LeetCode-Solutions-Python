@@ -1,48 +1,43 @@
 class Solution:
 
-    def maxSubArrayLen_optimal(self, nums: List[int], k: int) -> int:
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
         """
-        Cannot use sliding window to solve this problem since the arr can have negative numbers. We cannot when to expanding/shrinking the window length
+        The observation is that if two running sum return a same remainder that means there exists a good subrray whose sum % k == 0
+        For example, another short version of an explanation: say the the difference is d between a and b, such as d = b - a(b is on the right of a). you want d is multiple of k, so you just need d % k = 0. Because d = b - a, so d % k = 0 = (b - a) %k. so (b-a)%k=0 equal b%k - a%k = 0, then b%k = a%k.
 
-        Thinking about using prefix sum + hash map
-         - Hash Map stores the key as prefix sum up to the current index (inclusive) and its index as a value. If we have a duplicate prefix sum, we will not update the ahsh map since we want longest subarray, so we want to keep the index as far as possible. 
-         - Consider the case when prefix_sum == k, we can explicitly check that or we can initialize our hash map with a key of 0 corrresponding to a value of -1.
+        Algo:
+            1. Traverse thr the nums and find the running sum at each index
+            2. Check if we hvae the (prefix sum % k) in the map, if not, then store (prefix sum % k) as key and its index as value. Otherwise, we check if the we have at least two elements in the subarray by index.
+        If a % k = c, let d is a multiple of k, then d % k == 0 -> (a + d) % k = (a % k) + (d % k) = c + 0 = c
         """
-        prefix_sum = max_len = 0
-        prefix_index_map = {0: -1}
+        map_remainder_index = {0: -1}  # incase prefix_sum == k
+        prefix_sum = 0
         for index, num in enumerate(nums):
             prefix_sum += num
+            remainder = prefix_sum % k
+            # check in the map
+            if remainder not in map_remainder_index:
+                map_remainder_index[remainder] = index
+            # remainder is in the map, check if we have at least two elements
+            elif index - map_remainder_index[remainder] > 1:
+                return True
+        return False
 
-            if prefix_sum == k:
-                max_len = index + 1
-            if prefix_sum - k in prefix_index_map:
-                max_len = max(max_len, index -
-                              prefix_index_map[prefix_sum - k])
-
-            # only add the current prefix sum index pair to the map
-            # if the prefix sum is not already in the map
-            if prefix_sum not in prefix_index_map:
-                prefix_index_map[prefix_sum] = index
-
-        return max_len
-
-        # time: O(n)
+        # time = O(n)
         # space: O(n)
 
-    def maxSubArrayLen_brute_force(self, nums: List[int], k: int) -> int:
+    def checkSubarraySum_brute_force(self, nums: List[int], k: int) -> bool:
         """
-        Brute force solution: Try all possible subarrays. In those subarrays whose sum == k, record the max length  
+        Brute force solution: Try all possible subarrays and find if their sum is a good subarray or not
+
         """
-        max_length = 0
         n = len(nums)
         for i in range(n):
             total = 0
-            for end in range(i, n):
-                start = i
-                total += nums[end]
-                if total == k:
-                    max_length = max(max_length, end - start + 1)
-        return max_length
-
-        # time: O(n^2), n is lenght of arr -> NOT TIME EFFICIENT
+            for j in range(i, n):
+                total += nums[j]
+                if total % k == 0:
+                    return True
+        return False
+        # time: O(n^2), n is length of nums
         # space: O(1)
