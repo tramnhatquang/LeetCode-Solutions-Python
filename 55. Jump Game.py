@@ -1,19 +1,26 @@
-from functools import lru_cache
-from typing import *
-
-
 class Solution:
-	def canJump(self, nums: List[int]) -> bool:
-		n = len(nums)
 
-		@lru_cache(None)
-		def dp(i):
-			if i == n - 1:
-				return True
+    def canJump_optimal(self, nums: List[int]) -> bool:
+        """
+        The goal is to reach the last index in the arr from the start
+            - We can try to iterate from the end to start
+            - For each index, we check if the (curr_index + nums[curr_index] >= the current good index, where the curr good index will lead us to the last index in the arr, if it is, then we assign the good_index = curr_index)
 
-			for j in range(i + 1, min(i + nums[i], n - 1) + 1):
-				if dp(j):
-					return True
-			return False
+        """
+        goal = len(nums) - 1
+        for i in range(len(nums) - 1, -1, -1):
+            if nums[i] + i >= goal:
+                goal = i
 
-		return dp(0)
+        return True if goal == 0 else False
+        # time: O(n)
+        # space: O(1)
+
+    def canJump(self, nums: List[int]) -> bool:
+        canReach = 0
+
+        for i in range(len(nums)):
+            if i <= canReach:
+                canReach = max(canReach, i + nums[i])
+
+        return canReach >= len(nums) - 1
