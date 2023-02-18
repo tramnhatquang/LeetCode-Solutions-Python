@@ -42,7 +42,7 @@ class Solution:
 			else:
 				break
 
-		# second BST
+		# second BS
 		# we cannot find the target
 		if top > bottom:
 			return False
