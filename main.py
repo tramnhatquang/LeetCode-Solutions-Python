@@ -3,6 +3,7 @@ from typing import *
 
 def max_sum_profit(nums: List[int], k) -> int:
     # process the first k elements
+    # this is a problem from a company called Tarana Wireless Online Assessment
     curr_sum = max_sum = 0
     left = 0
     for right in range(len(nums)):
@@ -17,5 +18,21 @@ def max_sum_profit(nums: List[int], k) -> int:
     return max_sum
 
 
+def gex_max_aggregate_temperature_change(arr: List[int]) -> int:
+    # similar to max sum of subarrays
+    # Redo the problem from Amazon Online Assessment
+    curr_max = arr[0]
+    global_max = float('inf')
+    for num in arr[1:]:
+        curr_max = max(num, curr_max + num)
+        global_max = max(global_max, curr_max)
+
+    return global_max
+
+
+# time: O(n), n is length of arr
+
+
 if __name__ == '__main__':
+    # all the test cases are done in a different file
     pass
