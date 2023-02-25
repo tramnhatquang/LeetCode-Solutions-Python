@@ -1,5 +1,16 @@
 from typing import *
 
+from TreeNode import *
+
+
+def getSumRightLeafs(root: TreeNode) -> int:
+    if not root:
+        return 0
+    if root.right and not root.right.left and not root.right.left:
+        return root.right.val + getSumRightLeafs(root.left)
+    else:
+        return getSumRightLeafs(root.left) + getSumRightLeafs(root.right)
+
 
 def max_sum_profit(nums: List[int], k) -> int:
     # process the first k elements
@@ -19,7 +30,7 @@ def max_sum_profit(nums: List[int], k) -> int:
 
 
 def gex_max_aggregate_temperature_change(arr: List[int]) -> int:
-    # similar to max sum of subarrays
+    # similar to max sum of sub-arrays
     # Redo the problem from Amazon Online Assessment
     curr_max = arr[0]
     global_max = float('inf')
