@@ -1,5 +1,5 @@
-Select A.ID
-from Weather A
-JOIN Weather B
-ON (A.recordDate - Interval '1' Day) = B.recordDate
-where B.temperature < A.temperature
+SELECT A.ID
+FROM WEATHER A
+         JOIN WEATHER B
+              ON (A.RECORDDATE - INTERVAL '1' DAY) = B.RECORDDATE
+WHERE B.TEMPERATURE < A.TEMPERATURE
