@@ -26,9 +26,9 @@ class Solution:
 
     def subarraySum_not_optimal(self, nums: List[int], k: int) -> int:
         """
-        NOTE: the sliding window will not work here, since if we have negative integers in the arr, the sum of sldiing window will decrease as right pointer moves . Ex: [1, 2, -1, 3], res = 3 but sliding window will give 2 
+        NOTE: the sliding window will not work here, since if we have negative integers in the arr, the sum of sliding window will decrease as right pointer moves . Ex: [1, 2, -1, 3], res = 3 but sliding window will give 2
 
- We can choose a particular start point and while iterating over the end points, we can add the element corresponding to the end point to the sum formed till now. Whenever the sus equals the required k value, we can update the count value. We do so while iterating over all the endindices possible for every startindex. Whenever, we update the start index, we need to reset the sumvalue to 0.
+ We can choose a particular start point and while iterating over the end points, we can add the element corresponding to the end point to the sum formed till now. Whenever the sus equals the required k value, we can update the count value. We do so while iterating over all the end indices possible for every startindex. Whenever, we update the start index, we need to reset the sum value to 0.
         """
         n = len(nums)
         count = 0
