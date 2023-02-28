@@ -1,77 +1,49 @@
 from typing import *
 
-
-def minMeetingRooms(intervals: List[List[int]]) -> int:
-	time = []
-	for start, end in intervals:
-		time.append((start, 1))
-		time.append((end, -1))
-
-	time.sort(key=lambda x: (x[0], x[1]))
-	print(f'Time: {time}')
-	count = 0
-	max_count = 0
-	for t in time:
-		count += t[1]
-		max_count = max(max_count, count)
-	return max_count
+from TreeNode import *
 
 
-def search_left_most(nums: List[int], target: int) -> int:
-	left, right = 0, len(nums) - 1
-	res = -1
-	while left <= right:
-		mid = (left + right) // 2
-		if nums[mid] < target:
-			left = mid + 1
-		else:
-			res = mid
-			right = mid - 1
-	print(f'Res: {res}')
-	return res
+def getSumRightLeafs(root: TreeNode) -> int:
+    if not root:
+        return 0
+    if root.right and not root.right.left and not root.right.left:
+        return root.right.val + getSumRightLeafs(root.left)
+    else:
+        return getSumRightLeafs(root.left) + getSumRightLeafs(root.right)
 
 
-def find_longest_substring(string: str) -> int:
-	stack = [-1]
-	max_len = 0
-	count_question_marks = 0
-	for index, char in enumerate(string):
-		if char == '<':
-			stack.append(index)
-		elif char == '?':
-			count_question_marks += 1
-			if stack:
-				if stack[-1] == -1:
-					continue
-				else:
-					max_len = max(max_len, index - stack[-1] + 1)
-			stack.append(index)
-		else:
-			stack.pop()
-			if not stack:
-				stack.append(index)
-			else:
-				max_len = max(max_len, index - stack[-1])
+def max_sum_profit(nums: List[int], k) -> int:
+    # process the first k elements
+    # this is a problem from a company called Tarana Wireless Online Assessment
+    curr_sum = max_sum = 0
+    left = 0
+    for right in range(len(nums)):
+        # maintain window length == k
+        curr_sum += nums[right]
+        if right - left + 1 > k:
+            curr_sum -= nums[left]
+            left += 1
+            # update max_sum
+            max_sum = max(max_sum, curr_sum)
 
-	return max(max_len, count_question_marks)
+    return max_sum
 
 
-def test_cases_longest_substring() -> None:
-	test = [('<><??>>', 4),
-			('??????', 6),
-			('<<?', 2),
-			('>?', 0),
-			('<', 0),
-			('??', 2),
-			('<<<???', 6),
-			('<<?<?>>?', 8)]
-	for input, expected_answer in test:
-		print(f'Curr input: {input}')
-		output = find_longest_substring(input)
-		print(f'Curr output: {output}\n')
-		assert output == expected_answer
+def gex_max_aggregate_temperature_change(arr: List[int]) -> int:
+    # similar to max sum of sub-arrays
+    # Redo the problem from Amazon Online Assessment
+    curr_max = arr[0]
+    global_max = float('inf')
+    for num in arr[1:]:
+        curr_max = max(num, curr_max + num)
+        global_max = max(global_max, curr_max)
+
+    return global_max
+
+
+# time: O(n), n is length of arr
 
 
 if __name__ == '__main__':
-	test_cases_longest_substring()
-# print(find_longest_substring('<><??>>'))
+    # all the test cases are done in a different file
+    pass

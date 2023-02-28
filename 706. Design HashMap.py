@@ -33,11 +33,10 @@ class Bucket:
 
 
 class MyHashMap:
-
     """
     Some questions we should ask before proceeding to solve this problem:
-        - Can I use linear chaining to handle hash collions?
-        - What is hash collison? That's when two or different keys mapping to a same hash key
+        - Can I use linear chaining to handle hash collision?
+        - What is hash collisions? That's when two or different keys mapping to a same hash key
         - Can I assume the key is integer?
 
     """
@@ -67,7 +66,6 @@ class MyHashMap:
 
     # time: O(N / K) where K is predefined capacity (2069 in my case), N is the number of possible keys. This TC applies for all methods
     # space: O(K + M), where M is the number of unique keys inserted into our map
-
 
 # Your MyHashMap object will be instantiated and called as such:
 # obj = MyHashMap()
