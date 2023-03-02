@@ -67,5 +67,11 @@ class Solution:
 
 		return res
 
+
 # time: O(N) where N is the length of s
 # spacE: O(k) where k is at most 26 lowercase letters. We can consider it is O(1) space
+
+a, b = "cbaebabacd", "ab"
+s = Solution()
+res = s.findAnagrams_hash_map(a, b)
+print(res)

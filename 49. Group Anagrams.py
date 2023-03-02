@@ -19,7 +19,7 @@ class Solution:
 
 		return list(res.values())
 
-	# time: O(n log (m)) where n : length of strings, m is the longest length of string
+	# time: O(n * m) where n : length of strings, m is the longest length of string
 	# space: O(n * m), total information content stored in res
 
 	def groupAnagrams_sort(self, strs: List[str]) -> List[List[str]]:
@@ -34,3 +34,16 @@ class Solution:
 			map[tuple(sorted(string))].append(string)
 
 		return list(map.values())
+
+
+if __name__ == '__main__':
+	a = collections.defaultdict(int)
+	# b = collections.defaultdict(int)
+	a[1] += 1
+	a[2] += 1
+	a[1] -= 1
+	# b = {2: 1, 1: 0}
+	c = {2: 1}
+	print(a)
+	print(c)
+	assert a == c
