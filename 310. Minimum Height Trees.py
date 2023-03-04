@@ -1,4 +1,6 @@
 from typing import *
+
+
 class Solution:
 	def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
 		# APPROACH 1: BRUTE-FORCE SOLUTION
@@ -6,7 +8,7 @@ class Solution:
 
 		# However, this approach is inefficient due to long time complexity. TC = O(n^2)
 
-		# APPROACH 2: Topologoical Sorting
+		# APPROACH 2: Topological Sorting
 
 		# For the tree-alike graph, the number of centroid is no more than 2
 		# (Note) The degree of a vertex of a graph is the number of

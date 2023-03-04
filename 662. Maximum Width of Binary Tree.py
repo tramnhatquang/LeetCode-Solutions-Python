@@ -15,6 +15,7 @@ class Solution:
 		# for each level, we only need to keep track the first index and last index. The width of each level is (R - L + 1) where R is the right-most index, L is the left-most index
 		# APPROACH 1: BFS
 
+		global curr_index
 		if not root:
 			return 0
 
@@ -36,3 +37,5 @@ class Solution:
 			max_width = max(max_width, curr_index - start_index + 1)
 
 		return max_width
+# time: O(n), n is the total nodes in the BT
+# space: O(n)
