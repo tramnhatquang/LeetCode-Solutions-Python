@@ -40,7 +40,7 @@ def numIslands_dfs_recursive(self, grid: List[List[str]]) -> int:
 	count = 0
 
 	def dfs(row, col):
-		if not (0 <= row < rows and 0 <= col < cols):
+		if not (0 <= row < rows and 0 < col < cols):
 			return
 		if grid[row][col] == '0':
 			return
@@ -65,4 +65,4 @@ def numIslands_dfs_recursive(self, grid: List[List[str]]) -> int:
 if __name__ == '__main__':
 	s = Solution()
 	s.numIslands_bfs_iterative([["1", "1", "0", "0", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "1", "0", "0"],
-								["0", "0", "0", "1", "1"]])
+	                            ["0", "0", "0", "1", "1"]])
