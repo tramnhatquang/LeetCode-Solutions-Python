@@ -6,14 +6,14 @@ class Solution:
 
 		res = []
 		map = {
-				'2': 'abc',
-				'3': 'def',
-				'4': 'ghi',
-				'5': 'jkl',
-				'6': 'mno',
-				'7': 'pqrs',
-				'8': 'tuv',
-				'9': 'wxyz'
+			'2': 'abc',
+			'3': 'def',
+			'4': 'ghi',
+			'5': 'jkl',
+			'6': 'mno',
+			'7': 'pqrs',
+			'8': 'tuv',
+			'9': 'wxyz'
 		}
 
 		def backtrack(path: List[str], index: int) -> None:
@@ -35,7 +35,7 @@ class Solution:
 		return res
 
 # Algo:
-# Basically, we will lock in each digit in the string. try all possbile combinations of each character in the first digit to the second one and so on
+# Basically, we will lock in each digit in the string. try all possible combinations of each character in the first digit to the second one and so on
 # 1. If the input is empty, return an empty array.
 # 2. Initialize a data structure (e.g. a hash map) that maps digits to their letters, for example, mapping "6" to "m", "n", and "o".
 # 3. Use a backtracking function to generate all possible combinations.

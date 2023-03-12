@@ -1,4 +1,25 @@
 class Solution:
+
+	def addBinary_no_built_in(self, a: str, b: str) -> str:
+		res = ""
+		carry = 0
+
+		# adding from the end
+		a, b = a[::-1], b[::-1]
+
+		for i in range(max(len(a), len(b))):
+			digitA = ord(a[i]) - ord("0") if i < len(a) else 0
+			digitB = ord(b[i]) - ord("0") if i < len(b) else 0
+
+			total = digitA + digitB + carry
+			char = str(total % 2)
+			res = char + res
+			carry = total // 2
+
+		if carry:
+			res = "1" + res
+		return res
+
 	def addBinary(self, a, b) -> str:
 		# Brute force solution
 		# 1. Convert each binary string to numbers

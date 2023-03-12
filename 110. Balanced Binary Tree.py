@@ -11,8 +11,8 @@ class Solution:
 
 		# approach 1: Do a top-down recursion. For each node, we calculate the
 		# height of its left and right subtrees. Check if these heights are no
-		# more than 1 time: O(n log n), n is the total nodes in the BT space:
-		# O(n) for the recursive stack
+		# more than 1 time: O(n log n), n is the total nodes in the BT
+		# space: O(n) for the recursive stack
 
 		#         if not root: # an empty tree is a balanced tree
 		#             return True
@@ -36,10 +36,12 @@ class Solution:
 		# For every node, its left and right subtrees must be balance and the height of them differ no more than 1
 		# if the height is more than 1, we can return False
 		# if one of the subtrees are unbalanced, we can break the recursive call early instead of keeping checking every node in the top down approach
+		if not root:
+			return True
 
 		def get_depth(root: TreeNode):
 			if not root:  # an empty tree is a balanced tree
-				return True
+				return 0
 			# we use -1 as a signal of getting unbalanced subtrees or when the height between subtrees are more than 1
 
 			left_depth = get_depth(root.left)
