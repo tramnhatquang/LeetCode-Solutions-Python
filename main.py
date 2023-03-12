@@ -43,10 +43,6 @@ def gex_max_aggregate_temperature_change(arr: List[int]) -> int:
 
 # time: O(n), n is length of arr
 
-class Check:
-	def __init__(self, count=0):
-		self.__count = count
-
 
 if __name__ == '__main__':
 	# x = 'educative'
