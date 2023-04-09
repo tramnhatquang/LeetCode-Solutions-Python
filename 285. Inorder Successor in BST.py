@@ -6,29 +6,6 @@ class TreeNode:
 
 
 class Solution:
-	def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]:
-		# use an arr to store all the nodes in the inorder traversal
-		res = []
-
-		def inorder(root):
-			if root:
-				inorder(root.left)
-				res.append(root)
-				inorder(root.right)
-
-		inorder(root)
-
-		# check if we have a node like p and return its inoder successor
-		# inorder traversal in BST -> sorted array
-		for i in range(len(res)):
-			if i + 1 < len(res) and res[i] == p:
-				return res[i + 1]
-
-		return None
-
-	# time: O(n)
-	# space: O(n)
-
 	def inorderSuccessor_optimal_way(self, root: 'TreeNode', p: 'TreeNode') -> 'TreeNode':
 
 		successor = None
@@ -43,8 +20,31 @@ class Solution:
 
 		return successor
 
+	# time: O(n), n is total nodes in the BST, in case we can have a skewed tree
+	# space: O(1)
+	def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]:
+		# use an arr to store all the nodes in the inorder traversal
+		res = []
 
-# time: O(n), spacE: O(1)
+		def inorder(root):
+			if root:
+				inorder(root.left)
+				res.append(root)
+				inorder(root.right)
+
+		inorder(root)
+
+		# check if we have a node like p and return its in-order successor
+		# inorder traversal in BST -> sorted array
+		for i in range(len(res)):
+			if i + 1 < len(res) and res[i] == p:
+				return res[i + 1]
+
+		return None
+
+# time: O(n)
+# space: O(n)
+
 
 if __name__ == '__main__':
 	s = Solution()

@@ -3,13 +3,13 @@ class Solution:
 	def roman_to_integer_left_to_right_ver1(self, s: str) -> int:
 
 		map = {
-				'I': 1,
-				'V': 5,
-				'X': 10,
-				'L': 50,
-				'C': 100,
-				'D': 500,
-				'M': 1000
+			'I': 1,
+			'V': 5,
+			'X': 10,
+			'L': 50,
+			'C': 100,
+			'D': 500,
+			'M': 1000
 		}
 
 		res = 0
@@ -22,6 +22,7 @@ class Solution:
 				i += 2
 			else:
 				res += map[s[i]]
+				i += 1
 		return res
 
 	# time = space = O(1)
@@ -41,13 +42,13 @@ class Solution:
 		# The right-most symbol is always added. It is either by itself, or the additive part of a pair.
 
 		symbol_value = {
-				'I': 1,
-				'V': 5,
-				'X': 10,
-				'L': 50,
-				'C': 100,
-				'D': 500,
-				'M': 1000
+			'I': 1,
+			'V': 5,
+			'X': 10,
+			'L': 50,
+			'C': 100,
+			'D': 500,
+			'M': 1000
 		}
 
 		# loop backward from right to left
@@ -66,19 +67,19 @@ class Solution:
 		# APPROACH 2: LEFT TO RIGHT BY LOOKING AT THE MAP VALUE
 
 		symbol_value = {
-				'I': 1,
-				'IV': 4,
-				'V': 5,
-				'IX': 9,
-				'X': 10,
-				'XL': 40,
-				'L': 50,
-				'XC': 90,
-				'C': 100,
-				'CD': 400,
-				'D': 500,
-				'CM': 900,
-				'M': 1000
+			'I': 1,
+			'IV': 4,
+			'V': 5,
+			'IX': 9,
+			'X': 10,
+			'XL': 40,
+			'L': 50,
+			'XC': 90,
+			'C': 100,
+			'CD': 400,
+			'D': 500,
+			'CM': 900,
+			'M': 1000
 		}
 
 		ans = i = 0
