@@ -1,3 +1,8 @@
+'''
+Link: https://leetcode.com/problems/slowest-key/
+'''
+
+
 class Solution:
 	def slowestKey(self, releaseTimes: List[int], keysPressed: str) -> str:
 		'''
@@ -20,5 +25,5 @@ class Solution:
 
 		return largest_key
 
-	# time: O(n), n is length of keypresses arr
-	# space: O(1)
+# time: O(n), n is length of keypresses arr
+# space: O(1)
