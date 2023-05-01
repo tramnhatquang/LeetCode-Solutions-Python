@@ -1,6 +1,6 @@
 from typing import *
 
-from Utility.ListNode import ListNode
+from Utilities.ListNode import ListNode
 
 
 # Definition for singly-linked list.
